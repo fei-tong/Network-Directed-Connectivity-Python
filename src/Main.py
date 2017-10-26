@@ -63,7 +63,10 @@ print
 print "Loading..."
 print time.strftime('%Y-%m-%d %A %X %Z',time.localtime(time.time()))
 print
-TdicFile='../data/MNPoly_dic.data'  #data file used by this program
+data_dir = '../data/'
+if not os.path.exists(data_dir):
+    os.makedirs(data_dir)
+TdicFile=data_dir+'MNPoly_dic.data'  #data file used by this program
 MNPoly_dic={} # The polynomial of M*N lattices
 if os.path.isfile(TdicFile):
     f_Tdic=file(TdicFile)
@@ -101,13 +104,16 @@ f_Tdic.close()
 print time.strftime('%Y-%m-%d %A %X %Z',time.localtime(time.time()))
 
 print "****************************************************************************************************************************************************************************************"
-PdicFile='../data/Pol_dic.data' #data file used by this program
+PdicFile=data_dir+'Pol_dic.data' #data file used by this program
 P_dic={}
 if os.path.isfile(PdicFile):
     f_Pdic=file(PdicFile)
     P_dic=cPickle.load(f_Pdic)
     f_Pdic.close()
-polFile='../result/Result.txt'   #get result in this file
+result_dir = '../result/'
+if not os.path.exists(result_dir):
+    os.makedirs(result_dir)
+polFile=result_dir+'Result.txt'   #get result in this file
 
 for i in range(1,layers+1):
     for j in range(1,lattices+1):
